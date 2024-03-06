@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id='stock_picking_batch_form' model='ir.ui.view'>
+        <field name="name">stock.picking.batch.form.inherit.stock.transport</field>
+        <field name="model">stock.picking.batch</field>
+        <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form"/>
+        <field name="arch" type="xml">
+
+            <field name="scheduled_date" position="after">
+                <field name="stock_dock_id"/>
+                <field name="fleet_id"/>
+                <field name="category_id"/>
+                <field name="weight" widget="progressbar" invisible = "not category_id"/>
+                <field name="volume" widget="progressbar" invisible = "not category_id"/>
+            </field>
+            
+        </field>
+    </record>
+
+    <record id="stock_picking_batch.stock_picking_batch_action" model="ir.actions.act_window">
+        <field name="view_mode">tree,kanban,form,graph,gantt</field>
+        <field name="context">{
+            'graph_groupbys': ['scheduled_date:day', 'category_id'],
+        }</field>
+    </record>
+
+    <record id="stock_picking_batch_graph" model="ir.ui.view">
+        <field name="name">stock.picking.batch.graph</field>
+        <field name="model">stock.picking.batch</field>
+        <field name="arch" type="xml">
+            <graph string="Stock Picking Graph" sample="1">
+                <field name="weight"/>
+                <field name="volume"/>
+                <field name="transfers"/>
+                <field name="lines"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="stock_picking_batch_gantt" model="ir.ui.view">
+        <field name="name">stock.picking.batch.gantt</field>
+        <field name="model">stock.picking.batch</field>
+        <field name="arch" type="xml">
+            <gantt 
+                date_start="create_date" 
+                date_stop="scheduled_date" 
+                string="Schedule"
+                default_group_by='fleet_id' 
+                default_scale="week" 
+                thumbnails="{'fleet_id': 'image_128'}" 
+                color="id" 
+                decoration-info="state == 'draft'" >
+
+                <field name="state"/>
+            </gantt>
+        
+        </field>
+     </record>
+
+</odoo>
