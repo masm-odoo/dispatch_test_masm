@@ -17,15 +17,12 @@ class StockPickingBatch(models.Model):
 
     @api.depends('picking_ids', 'category_id')
     def _compute_weight_volume(self):
-        self.weight = 0
-        self.volume = 0
-
         for record in self:
             local_w = sum((line.weight_wh) for line in record.picking_ids)
             local_v = sum((line.volume_wh) for line in record.picking_ids)
 
-            if self.category_id.max_weight > 0: self.weight = (local_w/self.category_id.max_weight) * 100
-            if self.category_id.max_volume > 0: self.volume = (local_v/self.category_id.max_volume) * 100
+            record.weight = (local_w/record.category_id.max_weight) * 100 if record.category_id.max_weight > 0 else 0 
+            record.volume = (local_v/record.category_id.max_volume) * 100 if record.category_id.max_volume > 0 else 0
 
     @api.depends('picking_ids', 'move_line_ids')
     def _compute_transfers(self):
