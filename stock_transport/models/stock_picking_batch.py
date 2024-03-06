@@ -11,7 +11,6 @@ class StockPickingBatch(models.Model):
     volume = fields.Float(string='Volume (m^3)', compute="_compute_weight_volume", store=True)
     transfers = fields.Integer(string='Transfers', compute="_compute_transfers", store=True)
     lines = fields.Integer(string='Lines', compute="_compute_transfers", store=True)
-    date = fields.Date(string="Date")
 
     # ------------------------------ Methods ------------------------------
 
@@ -28,4 +27,4 @@ class StockPickingBatch(models.Model):
     def _compute_transfers(self):
         for record in self:
             record.transfers = len(record.picking_ids)
-            record. lines = len(record.move_line_ids)
+            record.lines = len(record.move_ids)
