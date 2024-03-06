@@ -10,5 +10,5 @@ class Picking(models.Model):
     @api.depends('move_ids')
     def _compute_weight_volume(self):
         for record in self:
-            record.weight_wh = sum((line.product_id.weight * line.product_uom_qty) for line in record.move_ids)
-            record.volume_wh = sum((line.product_id.volume * line.product_uom_qty) for line in record.move_ids)
+            record.weight_wh = sum((record.product_id.weight * record.product_uom_qty) for record in record.move_ids)
+            record.volume_wh = sum((record.product_id.volume * record.product_uom_qty) for record in record.move_ids)
