@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_picking" inherit_id="stock.report_picking">
+            <xpath expr="//div[@class='page']" position="inside">
+                <!-- Add your custom field here -->
+                <p>Custom Field 1: </p>
+            </xpath>
+        </template>
+    </data>
+</odoo>

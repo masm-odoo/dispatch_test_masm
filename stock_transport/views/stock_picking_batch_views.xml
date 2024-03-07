@@ -12,26 +12,16 @@
                 <field name="fleet_id"/>
                 <field name="category_id"/>
 
-                <label for='weight_value' invisible = "not category_id"/>
-                <div class='d-flex flex-row justify-content-between' invisible = "not category_id">
-                    <div class='d-flex flex-row gap-2'>
-                        <div class='d-flex flex-row gap-1'>
-                            <field name='weight_value'/>
-                            <span>kg</span>
-                        </div>
-                        <field name='weight' widget='progressbar' />
-                    </div>
+                <label for="weight_value" string="Weight (kg)"/>
+                <div style="width: 200px; display: flex; justify-content: center;">
+                    <field name="weight_value"/>
+                    <field name="weight" widget="progressbar" invisible = "not category_id"/>
                 </div>
 
-                <label for='volume_value' invisible = "not category_id"/>
-                <div class='d-flex flex-row justify-content-between' invisible = "not category_id">
-                    <div class='d-flex flex-row gap-2'>
-                        <div class='d-flex flex-row gap-1'>
-                            <field name='volume_value'/>
-                            <span>m^3</span>
-                        </div>
-                        <field name='volume' widget='progressbar'/>
-                    </div>
+                <label for="volume_value" string="Volume (m^3)"/>
+                <div style="width: 200px; display: flex; justify-content: center;">
+                    <field name="volume_value"/>
+                    <field name="volume" widget="progressbar" invisible = "not category_id"/>
                 </div>
 
             </field>
