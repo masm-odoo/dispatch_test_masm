@@ -12,7 +12,7 @@
                 <field name="fleet_id"/>
                 <field name="category_id"/>
 
-                <label for='weight_value' string='Weight' invisible = "not category_id"/>
+                <label for='weight_value' invisible = "not category_id"/>
                 <div class='d-flex flex-row justify-content-between' invisible = "not category_id">
                     <div class='d-flex flex-row gap-2'>
                         <div class='d-flex flex-row gap-1'>
