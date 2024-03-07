@@ -7,8 +7,10 @@ class StockPickingBatch(models.Model):
     category_id = fields.Many2one('fleet.vehicle.model.category', string='Vehicle Category')
     stock_dock_id = fields.Many2one('stock.dock')
     
-    weight = fields.Float(string='Weight (kg)', compute="_compute_weight_volume", store=True)
-    volume = fields.Float(string='Volume (m^3)', compute="_compute_weight_volume", store=True)
+    weight_value = fields.Float(string='Weight (kg)', compute="_compute_weight_volume", store=True)
+    volume_value = fields.Float(string='Volume (m^3)', compute="_compute_weight_volume", store=True)
+    weight = fields.Float(string='Weight(%)', compute="_compute_weight_volume", store=True)
+    volume = fields.Float(string='Volume(%)', compute="_compute_weight_volume", store=True)
     transfers = fields.Integer(string='Transfers', compute="_compute_transfers", store=True)
     lines = fields.Integer(string='Lines', compute="_compute_transfers", store=True)
 
@@ -20,6 +22,8 @@ class StockPickingBatch(models.Model):
             local_w = sum((line.weight_wh) for line in record.picking_ids)
             local_v = sum((line.volume_wh) for line in record.picking_ids)
 
+            record.weight_value = local_w
+            record.volume_value = local_v
             record.weight = (local_w/record.category_id.max_weight) * 100 if record.category_id.max_weight > 0 else 0 
             record.volume = (local_v/record.category_id.max_volume) * 100 if record.category_id.max_volume > 0 else 0
 
