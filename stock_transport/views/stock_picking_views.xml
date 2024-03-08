@@ -1,60 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-
-    <template id="report_picking" inherit_id="stock.report_picking">
-        <xpath expr="//div[@class='header']" position="inside">
-
-            <!-- <t t-if="o.page &gt; 0"/> -->
-                
-            <h1 t-field="o.name" class="mt0" >WH/OUT/00001</h1>
-            <div class="oe_structure"></div>
-            <div class="row mt32 mb32">
-                <div t-if="o.origin" class="col-auto" name="div_origin">
-                    <strong>Order:</strong>
-                    <p t-field="o.origin">S0001</p>
-                </div>
-                <div class="col-auto" name="div_state">
-                    <strong>Status:</strong>
-                    <p t-field="o.state">Draft</p>
-                </div>
-                <div class="col-auto" name="div_sched_date">
-                    <strong>Scheduled Date:</strong>
-                    <p t-field="o.scheduled_date">2023-09-24</p>
-                </div>
-            </div>
-
-        </xpath>
-    </template>
-
-    <!-- <template id="custom_report_picking_operations" inherit_id="stock.report_picking">
-        <xpath expr="//div[@class='page']" position="after">
-            <div class="row mt32 mb32" style="page-break-before:always;">
-                <div class="col-auto" name="div_name">
-                    <strong>Name:</strong>
-                    <p t-field="o.name">Shivendra</p>
-                </div>
-                <div class="col-auto" name="div_origin">
-                    <strong>Order:</strong>
-                    <p t-field="o.origin">S0001</p>
-                </div>
-                <div class="col-auto" name="div_state">
-                    <strong>Status:</strong>
-                    <p t-field="o.state">Draft</p>
-                </div>
-                <div class="col-auto" name="div_scheduled_date">
-                    <strong>Scheduled Date:</strong>
-                    <p t-field="o.scheduled_date">Draft</p>
-                </div>
-            </div>
-        </xpath>
-    </template> -->
-
     <record id='vpicktree' model='ir.ui.view'>
         <field name="name">stock.picking.tree.inherit.stock.transport</field>
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.vpicktree"/>
         <field name="arch" type="xml">
-
             <field name="scheduled_date" position="after">
                 <field name="weight_wh"/>
                 <field name="volume_wh"/>
@@ -62,5 +12,4 @@
             
         </field>
     </record>
-
 </odoo>

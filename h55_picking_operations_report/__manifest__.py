@@ -1,8 +1,8 @@
 {
     'name': 'Stock - Report Updated',
-    'depends': ['stock'],
+    'depends': ['stock_picking_batch'],
     'data': [
-        'report/report_stockpicking_operations.xml',
+        'report/stock_picking_views.xml',
     ],
     "auto_install": True,
     'installable': True,
