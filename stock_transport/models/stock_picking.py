@@ -3,7 +3,6 @@ from odoo import api,fields, models
 class Picking(models.Model):
     _inherit = 'stock.picking'
 
-    product = fields.Many2one('fleet.vehicle', string='Vehicle')
     weight_wh = fields.Float(string='Weight (kg)', compute='_compute_weight_volume')
     volume_wh = fields.Float(string='Volume (m^3)', compute='_compute_weight_volume')
 

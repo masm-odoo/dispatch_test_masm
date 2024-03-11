@@ -1,4 +1,6 @@
 from odoo import api,fields, models
+from odoo import http
+from urllib.parse import parse_qs, urljoin, urlparse
 
 class StockPickingBatch(models.Model):
     _inherit = 'stock.picking.batch'
@@ -32,7 +34,6 @@ class StockPickingBatch(models.Model):
         for record in self:
             record.transfers = len(record.picking_ids)
             record.lines = len(record.move_line_ids)
-            # record.lines = len(record.picking_type_idmove_ids_without_package)
 
     @api.depends('weight', 'volume')
     def _compute_display_name(self):
